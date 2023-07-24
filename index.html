@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les petits plats - Accueil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/7d32c97d44.js"
+      crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <a href="/"
+          >Les petits plats
+          <svg
+            width="25"
+            height="24"
+            viewBox="0 0 25 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12.3227 21.0238C17.4072 21.0238 21.529 16.902 21.529 11.8175C21.529 6.73293 17.4072 2.61111 12.3227 2.61111C7.23817 2.61111 3.11634 6.73293 3.11634 11.8175C3.11634 16.902 7.23817 21.0238 12.3227 21.0238ZM12.3227 23.5635C18.8098 23.5635 24.0687 18.3046 24.0687 11.8175C24.0687 5.3303 18.8098 0.0714264 12.3227 0.0714264C5.83554 0.0714264 0.57666 5.3303 0.57666 11.8175C0.57666 18.3046 5.83554 23.5635 12.3227 23.5635Z"
+              fill="white" />
+          </svg>
+        </a>
+      </nav>
+    </header>
+    <main>
+      <section id="search">
+        <h1>
+          CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET
+          DÉLICIEUSES
+        </h1>
+
+        <div>
+          <form action="/" method="get">
+            <input
+              type="search"
+              name="q"
+              placeholder="Rechercher une recette, un ingrédient, ..." />
+            <button type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section id="select">
+        <div>
+          <div class="ingredients">
+            <div class="buttonDiv">
+              <button>Ingrédients</button>
+              <span><i class="fa-solid fa-arrow-up"></i></span>
+            </div>
+
+            <div class="blockSelect hidden">
+              <input type="search" />
+
+              <div class="actif">
+                <p></p>
+                <i class="fa-solid fa-xmark" data-type="ingredients"></i>
+              </div>
+              <ul></ul>
+            </div>
+
+            <div class="block-actif">
+              <p></p>
+              <i class="fa-solid fa-xmark" data-type="ingredients"></i>
+            </div>
+          </div>
+
+          <div class="appliance">
+            <div class="buttonDiv">
+              <button>Appareils</button>
+              <span><i class="fa-solid fa-arrow-up"></i></span>
+            </div>
+            <div class="blockSelect hidden">
+              <input type="search" />
+
+              <div class="actif">
+                <p></p>
+                <i class="fa-solid fa-xmark" data-type="devices"></i>
+              </div>
+              <ul></ul>
+            </div>
+
+            <div class="block-actif">
+              <p></p>
+              <i class="fa-solid fa-xmark" data-type="devices"></i>
+            </div>
+          </div>
+
+          <div class="ustensils">
+            <div class="buttonDiv">
+              <button>Ustensiles</button>
+              <span><i class="fa-solid fa-arrow-up"></i></span>
+            </div>
+
+            <div class="blockSelect hidden">
+              <input type="search" />
+
+              <div class="actif">
+                <p></p>
+                <i class="fa-solid fa-xmark" data-type="utensils"></i>
+              </div>
+              <ul></ul>
+            </div>
+
+            <div class="block-actif">
+              <p></p>
+              <i class="fa-solid fa-xmark" data-type="utensils"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="recipsCount">
+          <p></p>
+        </div>
+      </section>
+
+      <section id="result"></section>
+    </main>
+
+    <script src="./script/foodCard-template.js"></script>
+    <script src="./script/recipes.js"></script>
+    <script src="./script/global.js"></script>
+    <script src="./script/script.js"></script>
+  </body>
+</html>

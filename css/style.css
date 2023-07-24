@@ -1,0 +1,374 @@
+.disabled {
+  display: none !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Anton", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+}
+
+header > nav {
+  margin-top: 30px;
+  margin-left: 70px;
+}
+
+header > nav > a {
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+header > nav > a > svg {
+  margin-left: 13px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ededed;
+}
+
+main > section h1 {
+  width: 700px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 66px;
+  color: #ffd15b;
+}
+
+#search {
+  background: url("../images/banner.png");
+  width: 100%;
+  height: 667px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+}
+
+#search form {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  position: relative;
+  width: 954px;
+  height: 66px;
+}
+
+input[type="search"] {
+  outline-color: #1b1b1b;
+  border-radius: 11px;
+  background-color: white;
+  width: 954px;
+  color: #7a7a7a;
+  padding: 20px;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+#search button {
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  color: white;
+  background: #1b1b1b;
+  border-radius: 10px;
+  width: 51px;
+  height: 52px;
+  transition: all 0.3s ease-in-out;
+}
+
+#search button:hover {
+  background-color: #ffd15b;
+}
+
+#select {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#select div:first-child {
+  display: flex;
+}
+
+#select .ingredients,
+#select .appliance,
+#select .ustensils {
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  padding: 17px 16px;
+  align-items: center;
+  width: 195px;
+  height: 56px;
+  background: #ffffff;
+  border-radius: 11px;
+  cursor: pointer;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#select .appliance,
+#select .ustensils {
+  margin-left: 100px;
+}
+
+#select button {
+  cursor: pointer;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  background: #ffffff;
+  border: none;
+  color: #1b1b1b;
+}
+
+#select .blockSelect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 195px;
+  background: #ffffff;
+  border-radius: 11px;
+}
+
+.blockSelect input[type="search"] {
+  outline: none;
+  margin-top: 20px;
+  width: 163px;
+  padding: 7px;
+  min-height: 36px;
+  border: 1px solid #c6c6c6;
+  color: #7a7a7a;
+  border-radius: 0;
+}
+
+.blockSelect .actif {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1b1b1b;
+  background-color: #ffd15b;
+  width: 195px;
+  height: 37px;
+}
+
+.blockSelect .actif p {
+  margin-left: 15px;
+  font-family: "Manrope";
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.blockSelect .actif i {
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.blockSelect li {
+  width: 163px;
+  color: #1b1b1b;
+  margin-top: 10px;
+  list-style: none;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.block-actif {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  padding: 17px 18px 17px 18px;
+  width: 195px;
+  background-color: #ffd15b;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.block-actif p {
+  font-family: "Manrope";
+  font-size: 14px;
+}
+
+.block-actif i {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.recipsCount {
+  margin-top: 25px;
+}
+
+#result {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 201px;
+}
+
+.foodCard {
+  width: 380px;
+  height: 731px;
+  background-color: white;
+  margin-top: 66px;
+  margin-left: 48px;
+  box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+  border-radius: 21px;
+  transition: all 0.3s ease-in-out;
+}
+
+.foodCard:hover {
+  transform: scale(0.95);
+}
+
+.foodCard > div > img {
+  width: 380px;
+  height: 253px;
+  object-fit: cover;
+  border-top-left-radius: 21px;
+  border-top-right-radius: 21px;
+}
+
+.foodCard > div + div h2 {
+  margin-top: 32px;
+  margin-left: 25px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #000000;
+}
+
+.foodCard h3 {
+  margin-top: 32px;
+  margin-left: 25px;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #7a7a7a;
+}
+
+.foodCard h3 + p {
+  width: 330px;
+  margin-top: 15px;
+  margin-left: 25px;
+  margin-right: 25px;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  height: 95px;
+  color: #1b1b1b;
+}
+
+.foodCard ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 330px;
+  margin-bottom: 26px;
+}
+
+.foodCard li {
+  width: 120px;
+  margin-left: 26px;
+  margin-top: 21px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #1b1b1b;
+}
+
+.foodCard li span {
+  font-family: "Manrope";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #7a7a7a;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  header {
+    width: 100%;
+  }
+
+  header > nav {
+    margin-left: 0;
+
+    text-align: center;
+    width: 100%;
+  }
+
+  #search div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #search form {
+    width: 100%;
+  }
+
+  #search form input[type="search"] {
+    width: 80%;
+  }
+
+  .foodCard {
+    margin-left: 0;
+  }
+}
