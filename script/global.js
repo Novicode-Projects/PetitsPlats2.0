@@ -14,8 +14,12 @@ const divIngredientsBlockActif = document.querySelector(
 );
 const ButtonDevices = document.querySelector(".devices button");
 
-const divDevicesBlockSelect = document.querySelector(".devices .blockSelect");
-const divDevicesBlockActif = document.querySelector(".devices .block-actif");
+const divApplianceBlockSelect = document.querySelector(
+  ".appliance .blockSelect",
+);
+const divApplianceBlockActif = document.querySelector(
+  ".appliance .block-actif",
+);
 
 const ButtonUtensils = document.querySelector(".utensils button");
 
@@ -24,75 +28,9 @@ const divUtensilsBlockActif = document.querySelector(".utensils .block-actif");
 
 const closeButtons = document.querySelectorAll(".actif>i");
 
-// Hook
-const GlobalRecipes = {
-  value: [],
-  setValue(newValue) {
-    if (newValue != this.value) {
-      this.value = newValue;
-
-      GlobalRecipesCount.setValue(this.value);
-
-      result.textContent = "";
-      this.value.map((recipe) => {
-        newCard(recipe);
-      });
-    }
-    return;
-  },
-};
-
-const GlobalRecipesCount = {
-  value: [],
-  setValue(newValue) {
-    if (newValue != this.value) {
-      this.value = newValue;
-      if (this.value.length == 0 || this.value.length == 1) {
-        recipsCount.textContent = `${this.value.length} recette`;
-      } else {
-        recipsCount.textContent = `${this.value.length} recettes`;
-      }
-    }
-    return;
-  },
-};
-
-const GlobalSearch = {
-  value: "",
-  setValue(newValue) {
-    if (newValue != this.value) {
-      this.value = newValue;
-    }
-    return;
-  },
-};
-
-const GlobalIngredientTag = {
-  value: "",
-  setValue(newValue) {
-    if (newValue != this.value) {
-      this.value = newValue;
-    }
-    return;
-  },
-};
-
-const GlobalDeviceTag = {
-  value: "",
-  setValue(newValue) {
-    if (newValue != this.value) {
-      this.value = newValue;
-    }
-    return;
-  },
-};
-
-const GlobalUtensilTag = {
-  value: "",
-  setValue(newValue) {
-    if (newValue != this.value) {
-      this.value = newValue;
-    }
-    return;
-  },
+const GlobalFilter = {
+  search: "",
+  ingredient: "",
+  appliance: "",
+  ustensils: "",
 };

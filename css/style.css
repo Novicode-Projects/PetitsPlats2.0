@@ -201,6 +201,10 @@ input[type="search"] {
   margin-right: 20px;
 }
 
+.blockSelect ul {
+  padding-bottom: 10px;
+}
+
 .blockSelect li {
   width: 163px;
   color: #1b1b1b;
@@ -222,6 +226,7 @@ input[type="search"] {
   background-color: #ffd15b;
   border-radius: 10px;
   margin-bottom: 30px;
+  font-family: "Manrope";
 }
 
 .block-actif p {
@@ -238,7 +243,8 @@ input[type="search"] {
 }
 
 .recipsCount {
-  margin-top: 25px;
+  display: flex;
+  align-items: center;
 }
 
 #result {
