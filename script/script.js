@@ -10,9 +10,18 @@ searchButton.addEventListener("click", (e) => {
 const resultCardsDOM = (recipesArray) => {
   result.textContent = "";
 
-  recipesArray.map((recipe) => {
-    newRecipeCard(recipe);
-  });
+  if (recipesArray.length == 0) {
+    const p = document.createElement("p");
+    p.style.fontFamily = "Manrope";
+    p.textContent = `Aucune recette ne contient « ${GlobalFilter.search} ». Vous pouvez chercher «
+    tarte aux pommes », « poisson », etc.`;
+
+    result.appendChild(p);
+  } else {
+    recipesArray.map((recipe) => {
+      newRecipeCard(recipe);
+    });
+  }
 };
 
 // Filter
