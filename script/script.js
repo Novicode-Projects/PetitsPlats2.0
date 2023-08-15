@@ -19,6 +19,7 @@ const resultCardsDOM = (recipesArray) => {
 const recipesFilter = () => {
   const newRecipesArray = [];
 
+  // GobalFilter
   const arrayFilter = {
     search: GlobalFilter.search != "" ? true : false,
     ingredient: GlobalFilter.ingredient != "" ? true : false,
@@ -38,14 +39,20 @@ const recipesFilter = () => {
     if (GlobalFilter.search != "") {
       const { name, ingredients, description } = recipe;
 
+      const lowerName = name.toLowerCase();
+      const lowerDescription = description.toLowerCase();
+      const lowerGlobalFilterSearch = GlobalFilter.search.toLowerCase();
+
       const ingredientsBooleanArray = ingredients.map((ingredient) => {
-        return ingredient.ingredient.includes(GlobalFilter.search);
+        const lowerIngredient = ingredient.ingredient.toLowerCase();
+
+        return lowerIngredient.includes(lowerGlobalFilterSearch);
       });
 
       if (
-        name.includes(GlobalFilter.search) ||
+        lowerName.includes(lowerGlobalFilterSearch) ||
         ingredientsBooleanArray.find((ingredient) => ingredient === true) ||
-        description.includes(GlobalFilter.search)
+        lowerDescription.includes(lowerGlobalFilterSearch)
       ) {
         arrayFilterCompare.search = true;
       }
@@ -54,9 +61,12 @@ const recipesFilter = () => {
     // Ingredient
     if (GlobalFilter.ingredient != "") {
       const { ingredients } = recipe;
+      const lowerGlobalFilterIngredient = GlobalFilter.ingredient;
 
       ingredients.map((ingredient) => {
-        if (ingredient.ingredient.includes(GlobalFilter.ingredient)) {
+        const lowerIngredient = ingredient.ingredient.toLowerCase();
+
+        if (lowerIngredient.includes(lowerGlobalFilterIngredient)) {
           arrayFilterCompare.ingredient = true;
         }
       });
@@ -66,7 +76,10 @@ const recipesFilter = () => {
     if (GlobalFilter.appliance != "") {
       const { appliance } = recipe;
 
-      if (appliance.includes(GlobalFilter.appliance)) {
+      const lowerAppliance = appliance.toLowerCase();
+      const lowerGlobalFilterAppliance = GlobalFilter.appliance;
+
+      if (lowerAppliance.includes(lowerGlobalFilterAppliance)) {
         arrayFilterCompare.appliance = true;
       }
     }
@@ -74,9 +87,12 @@ const recipesFilter = () => {
     // Ustensils
     if (GlobalFilter.ustensils != "") {
       const { ustensils } = recipe;
+      const lowerGlobalFilterUstensils = GlobalFilter.ustensils;
 
       ustensils.map((ustensil) => {
-        if (ustensil.includes(GlobalFilter.ustensils)) {
+        const lowerUstensil = ustensil.toLowerCase();
+
+        if (lowerUstensil.includes(lowerGlobalFilterUstensils)) {
           arrayFilterCompare.ustensils = true;
         }
       });
