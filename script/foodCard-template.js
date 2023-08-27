@@ -5,13 +5,12 @@ const textFormat = (string, targetNumber) => {
     const subtractNumber = length - targetNumber;
     return (string = string.slice(0, -subtractNumber) + "...");
   }
+
   return string;
 };
 
 const newRecipeCard = (props) => {
   const { image, name, description, ingredients } = props;
-
-  // Link
 
   // Article
   const article = document.createElement("article");

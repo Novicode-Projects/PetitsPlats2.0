@@ -33,4 +33,5 @@ const GlobalFilter = {
   ingredient: "",
   appliance: "",
   ustensils: "",
+  tagsArray: [],
 };

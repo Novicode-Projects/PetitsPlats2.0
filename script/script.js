@@ -107,11 +107,11 @@ const recipesFilter = () => {
   });
 
   const recipsCount = document.querySelector(".recipsCount p");
-  recipsCount.textContent = `${
-    newRecipesArray == [] ? recipes.length : newRecipesArray.length
-  } Recettes`;
+  recipsCount.textContent = `${newRecipesArray.length} Recettes`;
 
-  resultCardsDOM(newRecipesArray == [] ? recipes : newRecipesArray);
+  resetTagDOMFilter();
+  console.log(newRecipesArray);
+  resultCardsDOM(newRecipesArray);
 };
 
 const actifTag = (tagName, textContent) => {
@@ -122,6 +122,12 @@ const actifTag = (tagName, textContent) => {
   const blockActifI = document.querySelector(`.${tagName} .block-actif i`);
 
   //blockActif.textContent = textContent;
+  /*const e = ([tagName] = {
+    content: textContent,
+  });*/
+
+  GlobalFilter.tagsArray.push({ [tagName]: textContent });
+
   console.log(actifP);
   actifP.textContent = textContent;
   blockActifP.textContent = textContent;
@@ -367,6 +373,15 @@ const tagDOM = (tagName) => {
 
   // Ul
   ulTagDOM(tagName, recipes, "");
+};
+
+const resetTagDOMFilter = () => {
+  const { tagsArray } = GlobalFilter;
+  console.log(tagsArray);
+
+  tagsArray.map((tag) => {
+    console.log(tag);
+  });
 };
 
 tagDOM("ingredients");
