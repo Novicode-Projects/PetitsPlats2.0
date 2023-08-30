@@ -129,7 +129,8 @@ const recipesFilter = () => {
   recipsCount.textContent = `${newRecipesArray.length} Recettes`;
 
   resultCardsDOM(
-    arrayFilter.ingredient == false &&
+    GlobalFilter.search == "" &&
+      arrayFilter.ingredient == false &&
       arrayFilter.appliance == false &&
       arrayFilter.ustensils == false
       ? recipes
