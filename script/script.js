@@ -15,9 +15,15 @@ const resultCardsDOM = (recipesArray) => {
 
   ulTagDOM("ustensils", recipesArray, "");
 
-  recipesArray.map((recipe) => {
-    newRecipeCard(recipe);
-  });
+  if (recipesArray.length == 0) {
+    const p = document.createElement("p");
+    p.textContent = "Aucun résultat";
+    result.appendChild(p);
+  } else {
+    recipesArray.map((recipe) => {
+      newRecipeCard(recipe);
+    });
+  }
 };
 
 // Filter
