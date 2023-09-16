@@ -17,7 +17,7 @@ const resultCardsDOM = (recipesArray) => {
 
   if (recipesArray.length == 0) {
     const p = document.createElement("p");
-    p.textContent = "Aucun résultat";
+    p.textContent = "";
     result.appendChild(p);
   } else {
     recipesArray.map((recipe) => {
@@ -28,6 +28,8 @@ const resultCardsDOM = (recipesArray) => {
 
 // Filter
 const recipesFilter = () => {
+  console.time();
+
   const newRecipesArray = [];
 
   // GobalFilter
@@ -142,6 +144,7 @@ const recipesFilter = () => {
       ? recipes
       : newRecipesArray,
   );
+  console.timeEnd();
 };
 
 const generateTagLi = (tagName, tagArray) => {
