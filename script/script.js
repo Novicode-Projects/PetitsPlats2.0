@@ -15,13 +15,21 @@ const resultCardsDOM = (recipesArray) => {
 
   ulTagDOM("ustensils", recipesArray, "");
 
-  recipesArray.map((recipe) => {
-    newRecipeCard(recipe);
-  });
+  if (recipesArray.length == 0) {
+    const p = document.createElement("p");
+    p.textContent = "";
+    result.appendChild(p);
+  } else {
+    recipesArray.map((recipe) => {
+      newRecipeCard(recipe);
+    });
+  }
 };
 
 // Filter
 const recipesFilter = () => {
+  console.time();
+
   const newRecipesArray = [];
 
   // GobalFilter
@@ -136,6 +144,7 @@ const recipesFilter = () => {
       ? recipes
       : newRecipesArray,
   );
+  console.timeEnd();
 };
 
 const generateTagLi = (tagName, tagArray) => {
