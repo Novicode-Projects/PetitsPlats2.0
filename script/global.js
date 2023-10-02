@@ -7,18 +7,18 @@ const recipsCount = document.querySelector(".recipsCount>p");
 const ButtonIngredients = document.querySelector(".ingredients button");
 
 const divIngredientsBlockSelect = document.querySelector(
-  ".ingredients .blockSelect",
+  ".ingredients .blockSelect"
 );
 const divIngredientsBlockActif = document.querySelector(
-  ".ingredients .block-actif",
+  ".ingredients .block-actif"
 );
 const ButtonDevices = document.querySelector(".devices button");
 
 const divApplianceBlockSelect = document.querySelector(
-  ".appliance .blockSelect",
+  ".appliance .blockSelect"
 );
 const divApplianceBlockActif = document.querySelector(
-  ".appliance .block-actif",
+  ".appliance .block-actif"
 );
 
 const ButtonUtensils = document.querySelector(".utensils button");
@@ -33,4 +33,5 @@ const GlobalFilter = {
   ingredient: "",
   appliance: "",
   ustensils: "",
+  tagsArray: [],
 };
