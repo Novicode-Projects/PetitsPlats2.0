@@ -3,7 +3,7 @@ searchButton.addEventListener("click", (e) => {
   e.preventDefault();
 
   GlobalFilter.search = searchBar.value;
-  recipesFilter();
+  recipesFilter({ isStart: false });
 });
 
 // Result Cards DOM
@@ -30,124 +30,132 @@ const resultCardsDOM = (recipesArray) => {
 };
 
 // Filter
-const recipesFilter = () => {
-  const newRecipesArray = [];
+const recipesFilter = ({ isStart }) => {
+  const recipsCount = document.querySelector(".recipsCount p");
 
-  // GobalFilter
-  const arrayFilter = {
-    search: GlobalFilter.search != "" ? true : false,
-    ingredient: false,
-    appliance: false,
-    ustensils: false,
-  };
+  if (GlobalFilter.search.length < 3 && !isStart) {
+    recipsCount.textContent = `${recipes.length} Recettes`;
 
-  for (const tagObject of GlobalFilter.tagsArray) {
-    if (tagObject.tagName == "ingredients") {
-      arrayFilter.ingredient = true;
-    } else if (tagObject.tagName == "appliance") {
-      arrayFilter.appliance = true;
-    } else if (tagObject.tagName == "ustensils") {
-      arrayFilter.ustensils = true;
-    }
-  }
+    resultCardsDOM(recipes);
+  } else {
+    const newRecipesArray = [];
 
-  for (const recipe of recipes) {
-    const arrayFilterCompare = {
-      search: false,
+    // GobalFilter
+    const arrayFilter = {
+      search: GlobalFilter.search != "" ? true : false,
       ingredient: false,
       appliance: false,
       ustensils: false,
     };
 
-    // Search
-    if (GlobalFilter.search != "") {
-      const { name, ingredients, description } = recipe;
-
-      const lowerName = name.toLowerCase();
-      const lowerDescription = description.toLowerCase();
-      const lowerGlobalFilterSearch = GlobalFilter.search.toLowerCase();
-
-      const ingredientsBooleanArray = [];
-
-      for (const ingredient of ingredients) {
-        const lowerIngredient = ingredient.ingredient.toLowerCase();
-
-        ingredientsBooleanArray.push(
-          lowerIngredient.includes(lowerGlobalFilterSearch)
-        );
-      }
-
-      if (
-        lowerName.includes(lowerGlobalFilterSearch) ||
-        ingredientsBooleanArray.find((ingredient) => ingredient === true) ||
-        lowerDescription.includes(lowerGlobalFilterSearch)
-      ) {
-        arrayFilterCompare.search = true;
+    for (const tagObject of GlobalFilter.tagsArray) {
+      if (tagObject.tagName == "ingredients") {
+        arrayFilter.ingredient = true;
+      } else if (tagObject.tagName == "appliance") {
+        arrayFilter.appliance = true;
+      } else if (tagObject.tagName == "ustensils") {
+        arrayFilter.ustensils = true;
       }
     }
 
-    for (tagObject of GlobalFilter.tagsArray) {
-      const { tagName, content } = tagObject;
+    for (const recipe of recipes) {
+      const arrayFilterCompare = {
+        search: false,
+        ingredient: false,
+        appliance: false,
+        ustensils: false,
+      };
 
-      // Ingredient
-      if (tagName == "ingredients") {
-        const { ingredients } = recipe;
-        const lowerGlobalFilterIngredient = content;
+      // Search
+      if (GlobalFilter.search != "") {
+        const { name, ingredients, description } = recipe;
+
+        const lowerName = name.toLowerCase();
+        const lowerDescription = description.toLowerCase();
+        const lowerGlobalFilterSearch = GlobalFilter.search.toLowerCase();
+
+        const ingredientsBooleanArray = [];
 
         for (const ingredient of ingredients) {
           const lowerIngredient = ingredient.ingredient.toLowerCase();
 
-          if (lowerIngredient.includes(lowerGlobalFilterIngredient)) {
-            arrayFilterCompare.ingredient = true;
+          ingredientsBooleanArray.push(
+            lowerIngredient.includes(lowerGlobalFilterSearch)
+          );
+        }
+
+        if (
+          lowerName.includes(lowerGlobalFilterSearch) ||
+          ingredientsBooleanArray.find((ingredient) => ingredient === true) ||
+          lowerDescription.includes(lowerGlobalFilterSearch)
+        ) {
+          arrayFilterCompare.search = true;
+        }
+      }
+
+      for (tagObject of GlobalFilter.tagsArray) {
+        const { tagName, content } = tagObject;
+
+        // Ingredient
+        if (tagName == "ingredients") {
+          const { ingredients } = recipe;
+          const lowerGlobalFilterIngredient = content;
+
+          for (const ingredient of ingredients) {
+            const lowerIngredient = ingredient.ingredient.toLowerCase();
+
+            if (lowerIngredient.includes(lowerGlobalFilterIngredient)) {
+              arrayFilterCompare.ingredient = true;
+            }
+          }
+        }
+
+        // Appliance
+        if (tagName == "appliance") {
+          const { appliance } = recipe;
+
+          const lowerAppliance = appliance.toLowerCase();
+          const lowerGlobalFilterAppliance = content;
+
+          if (lowerAppliance.includes(lowerGlobalFilterAppliance)) {
+            arrayFilterCompare.appliance = true;
+          }
+        }
+
+        // Ustensils
+        if (tagName == "ustensils") {
+          const { ustensils } = recipe;
+          const lowerGlobalFilterUstensils = content;
+
+          for (const ustensil of ustensils) {
+            const lowerUstensil = ustensil.toLowerCase();
+
+            if (lowerUstensil.includes(lowerGlobalFilterUstensils)) {
+              arrayFilterCompare.ustensils = true;
+            }
           }
         }
       }
 
-      // Appliance
-      if (tagName == "appliance") {
-        const { appliance } = recipe;
-
-        const lowerAppliance = appliance.toLowerCase();
-        const lowerGlobalFilterAppliance = content;
-
-        if (lowerAppliance.includes(lowerGlobalFilterAppliance)) {
-          arrayFilterCompare.appliance = true;
-        }
-      }
-
-      // Ustensils
-      if (tagName == "ustensils") {
-        const { ustensils } = recipe;
-        const lowerGlobalFilterUstensils = content;
-
-        for (const ustensil of ustensils) {
-          const lowerUstensil = ustensil.toLowerCase();
-
-          if (lowerUstensil.includes(lowerGlobalFilterUstensils)) {
-            arrayFilterCompare.ustensils = true;
-          }
-        }
+      if (
+        Object.entries(arrayFilter).toString() ===
+        Object.entries(arrayFilterCompare).toString()
+      ) {
+        newRecipesArray.push(recipe);
       }
     }
 
-    if (
-      Object.entries(arrayFilter).toString() ===
-      Object.entries(arrayFilterCompare).toString()
-    ) {
-      newRecipesArray.push(recipe);
-    }
+    recipsCount.textContent = `${newRecipesArray.length} Recettes`;
+
+    resultCardsDOM(
+      GlobalFilter.search == "" &&
+        arrayFilter.ingredient == false &&
+        arrayFilter.appliance == false &&
+        arrayFilter.ustensils == false
+        ? recipes
+        : newRecipesArray
+    );
   }
-  const recipsCount = document.querySelector(".recipsCount p");
-  recipsCount.textContent = `${newRecipesArray.length} Recettes`;
-
-  resultCardsDOM(
-    GlobalFilter.search == "" &&
-      arrayFilter.ingredient == false &&
-      arrayFilter.appliance == false &&
-      arrayFilter.ustensils == false
-      ? recipes
-      : newRecipesArray
-  );
 };
 
 const generateTagLi = (tagName, tagArray) => {
@@ -163,7 +171,7 @@ const generateTagLi = (tagName, tagArray) => {
 
       GlobalFilter.ingredient = textContent.toLowerCase();
       actifTag(tagName, textContent.toLowerCase());
-      recipesFilter();
+      recipesFilter({ isStart: false });
     });
 
     ul.appendChild(li);
@@ -204,7 +212,7 @@ const actifTag = (tagName, textContent) => {
     closeActifButton(tagName);
   });
 
-  recipesFilter();
+  recipesFilter({ isStart: false });
 };
 
 const closeActifButton = (tagName) => {
@@ -226,7 +234,7 @@ const closeActifButton = (tagName) => {
   actif.classList.add("hidden");
   blockActif.classList.add("hidden");
 
-  recipesFilter();
+  recipesFilter({ isStart: false });
 };
 
 // Ul Tag
@@ -408,4 +416,4 @@ tagDOM("ingredients", recipes);
 tagDOM("appliance", recipes);
 tagDOM("ustensils", recipes);
 
-recipesFilter();
+recipesFilter({ isStart: true });
