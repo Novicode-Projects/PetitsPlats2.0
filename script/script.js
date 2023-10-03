@@ -17,14 +17,6 @@ const resultCardsDOM = (recipesArray) => {
 
   if (recipesArray.length == 0) {
     const p = document.createElement("p");
-<<<<<<< HEAD
-    p.textContent = "";
-    result.appendChild(p);
-  } else {
-    recipesArray.map((recipe) => {
-      newRecipeCard(recipe);
-    });
-=======
     p.style.fontFamily = "Manrope";
     p.textContent = `Aucune recette ne contient « ${GlobalFilter.search} ». Vous pouvez chercher «
     tarte aux pommes », « poisson », etc.`;
@@ -34,39 +26,10 @@ const resultCardsDOM = (recipesArray) => {
     for (const recipe of recipesArray) {
       newRecipeCard(recipe);
     }
->>>>>>> Scénario-alternatif-A1
   }
 };
 
 // Filter
-<<<<<<< HEAD
-const recipesFilter = () => {
-  console.time();
-
-  const newRecipesArray = [];
-
-  // GobalFilter
-  const arrayFilter = {
-    search: GlobalFilter.search != "" ? true : false,
-    ingredient: false,
-    appliance: false,
-    ustensils: false,
-  };
-
-  GlobalFilter.tagsArray.map((tagObject, key) => {
-    if (tagObject.tagName == "ingredients") {
-      arrayFilter.ingredient = true;
-    } else if (tagObject.tagName == "appliance") {
-      arrayFilter.appliance = true;
-    } else if (tagObject.tagName == "ustensils") {
-      arrayFilter.ustensils = true;
-    }
-  });
-
-  recipes.map((recipe) => {
-    const arrayFilterCompare = {
-      search: false,
-=======
 const recipesFilter = ({ isStart }) => {
   const recipsCount = document.querySelector(".recipsCount p");
 
@@ -80,7 +43,6 @@ const recipesFilter = ({ isStart }) => {
     // GobalFilter
     const arrayFilter = {
       search: GlobalFilter.search != "" ? true : false,
->>>>>>> Scénario-alternatif-A1
       ingredient: false,
       appliance: false,
       ustensils: false,
@@ -96,22 +58,6 @@ const recipesFilter = ({ isStart }) => {
       }
     }
 
-<<<<<<< HEAD
-      const lowerName = name.toLowerCase();
-      const lowerDescription = description.toLowerCase();
-      const lowerGlobalFilterSearch = GlobalFilter.search.toLowerCase();
-
-      const ingredientsBooleanArray = ingredients.map((ingredient) => {
-        const lowerIngredient = ingredient.ingredient.toLowerCase();
-
-        return lowerIngredient.includes(lowerGlobalFilterSearch);
-      });
-
-      if (
-        lowerName.includes(lowerGlobalFilterSearch) ||
-        ingredientsBooleanArray.find((ingredient) => ingredient === true) ||
-        lowerDescription.includes(lowerGlobalFilterSearch)
-=======
     for (const recipe of recipes) {
       const arrayFilterCompare = {
         search: false,
@@ -194,98 +140,11 @@ const recipesFilter = ({ isStart }) => {
       if (
         Object.entries(arrayFilter).toString() ===
         Object.entries(arrayFilterCompare).toString()
->>>>>>> Scénario-alternatif-A1
       ) {
         newRecipesArray.push(recipe);
       }
     }
 
-<<<<<<< HEAD
-    GlobalFilter.tagsArray.map((tagObject) => {
-      const { tagName, content } = tagObject;
-
-      // Ingredient
-      if (tagName == "ingredients") {
-        const { ingredients } = recipe;
-        const lowerGlobalFilterIngredient = content;
-
-        ingredients.map((ingredient) => {
-          const lowerIngredient = ingredient.ingredient.toLowerCase();
-
-          if (lowerIngredient.includes(lowerGlobalFilterIngredient)) {
-            arrayFilterCompare.ingredient = true;
-          }
-        });
-      }
-
-      // Appliance
-      if (tagName == "appliance") {
-        const { appliance } = recipe;
-
-        const lowerAppliance = appliance.toLowerCase();
-        const lowerGlobalFilterAppliance = content;
-
-        if (lowerAppliance.includes(lowerGlobalFilterAppliance)) {
-          arrayFilterCompare.appliance = true;
-        }
-      }
-
-      // Ustensils
-      if (tagName == "ustensils") {
-        const { ustensils } = recipe;
-        const lowerGlobalFilterUstensils = content;
-
-        ustensils.map((ustensil) => {
-          const lowerUstensil = ustensil.toLowerCase();
-
-          if (lowerUstensil.includes(lowerGlobalFilterUstensils)) {
-            arrayFilterCompare.ustensils = true;
-          }
-        });
-      }
-    });
-
-    if (
-      Object.entries(arrayFilter).toString() ===
-      Object.entries(arrayFilterCompare).toString()
-    ) {
-      newRecipesArray.push(recipe);
-    }
-  });
-
-  const recipsCount = document.querySelector(".recipsCount p");
-  recipsCount.textContent = `${newRecipesArray.length} Recettes`;
-
-  resultCardsDOM(
-    GlobalFilter.search == "" &&
-      arrayFilter.ingredient == false &&
-      arrayFilter.appliance == false &&
-      arrayFilter.ustensils == false
-      ? recipes
-      : newRecipesArray,
-  );
-  console.timeEnd();
-};
-
-const generateTagLi = (tagName, tagArray) => {
-  const ul = document.querySelector(`.${tagName} ul`);
-  ul.textContent = "";
-
-  tagArray.map((tagValue) => {
-    const li = document.createElement("li");
-    li.textContent = tagValue;
-
-    li.addEventListener("click", ({ target }) => {
-      const { textContent } = target;
-
-      GlobalFilter.ingredient = textContent.toLowerCase();
-      actifTag(tagName, textContent.toLowerCase());
-      recipesFilter();
-    });
-
-    ul.appendChild(li);
-  });
-=======
     recipsCount.textContent = `${newRecipesArray.length} Recettes`;
 
     resultCardsDOM(
@@ -317,7 +176,6 @@ const generateTagLi = (tagName, tagArray) => {
 
     ul.appendChild(li);
   }
->>>>>>> Scénario-alternatif-A1
 };
 
 const actifTag = (tagName, textContent) => {
@@ -328,16 +186,6 @@ const actifTag = (tagName, textContent) => {
   const blockActifI = document.querySelector(`.${tagName} .block-actif i`);
 
   if (GlobalFilter.tagsArray.length != 0) {
-<<<<<<< HEAD
-    GlobalFilter.tagsArray.map((tagObject, key) => {
-      if (tagObject.tagName == tagName) {
-        GlobalFilter.tagsArray[key].tagName = tagName;
-        GlobalFilter.tagsArray[key].content = textContent;
-      } else {
-        GlobalFilter.tagsArray.push({ tagName: tagName, content: textContent });
-      }
-    });
-=======
     let i = 0;
 
     for (const tagObject of GlobalFilter.tagsArray) {
@@ -350,7 +198,6 @@ const actifTag = (tagName, textContent) => {
 
       i++;
     }
->>>>>>> Scénario-alternatif-A1
   } else {
     GlobalFilter.tagsArray.push({ tagName: tagName, content: textContent });
   }
@@ -373,11 +220,7 @@ const closeActifButton = (tagName) => {
   const blockActif = document.querySelector(`.${tagName} .block-actif`);
 
   GlobalFilter.tagsArray = GlobalFilter.tagsArray.filter(
-<<<<<<< HEAD
-    (obj) => obj.tagName != tagName,
-=======
     (obj) => obj.tagName != tagName
->>>>>>> Scénario-alternatif-A1
   );
 
   if (tagName == "ingredients") {
@@ -405,31 +248,19 @@ const ulTagDOM = (tagName, recipeArray, searchValue) => {
   if (searchValue != "") {
     const lowerAndTrimSearch = searchValue.toLowerCase().trim();
 
-<<<<<<< HEAD
-    recipeArray.map((recipe) => {
-=======
     for (const recipe of recipeArray) {
->>>>>>> Scénario-alternatif-A1
       // TagName  = Ingredients
 
       if (tagName == "ingredients") {
         const { ingredients } = recipe;
 
-<<<<<<< HEAD
-        ingredients.map((ingredient) => {
-=======
         for (const ingredient of ingredients) {
->>>>>>> Scénario-alternatif-A1
           const lowerAndTrimIngredient = ingredient.ingredient
             .toLowerCase()
             .trim();
 
           const isIngredientDuplicates = arrayWithoutDuplicates.find(
-<<<<<<< HEAD
-            (ingredientInArray) => ingredientInArray == lowerAndTrimIngredient,
-=======
             (ingredientInArray) => ingredientInArray == lowerAndTrimIngredient
->>>>>>> Scénario-alternatif-A1
           );
 
           if (
@@ -447,11 +278,7 @@ const ulTagDOM = (tagName, recipeArray, searchValue) => {
         const lowerAndTrimAppliance = appliance.toLowerCase().trim();
 
         const isApplianceDuplicates = arrayWithoutDuplicates.find(
-<<<<<<< HEAD
-          (applianceInArray) => applianceInArray == lowerAndTrimAppliance,
-=======
           (applianceInArray) => applianceInArray == lowerAndTrimAppliance
->>>>>>> Scénario-alternatif-A1
         );
 
         if (
@@ -467,19 +294,11 @@ const ulTagDOM = (tagName, recipeArray, searchValue) => {
       else if (tagName == "ustensils") {
         const { ustensils } = recipe;
 
-<<<<<<< HEAD
-        ustensils.map((ustensil) => {
-          const lowerAndTrimUstensil = ustensil.toLowerCase().trim();
-
-          const isUstensilDuplicates = arrayWithoutDuplicates.find(
-            (ustensilInArray) => ustensilInArray == lowerAndTrimUstensil,
-=======
         for (const ustensil of ustensils) {
           const lowerAndTrimUstensil = ustensil.toLowerCase().trim();
 
           const isUstensilDuplicates = arrayWithoutDuplicates.find(
             (ustensilInArray) => ustensilInArray == lowerAndTrimUstensil
->>>>>>> Scénario-alternatif-A1
           );
 
           if (
@@ -497,29 +316,17 @@ const ulTagDOM = (tagName, recipeArray, searchValue) => {
   else {
     // TagName  = Ingredients
 
-<<<<<<< HEAD
-    recipeArray.map((recipe) => {
-      if (tagName == "ingredients") {
-        const { ingredients } = recipe;
-
-        ingredients.map((ingredient) => {
-=======
     for (const recipe of recipeArray) {
       if (tagName == "ingredients") {
         const { ingredients } = recipe;
 
         for (const ingredient of ingredients) {
->>>>>>> Scénario-alternatif-A1
           const lowerAndTrimIngredient = ingredient.ingredient
             .toLowerCase()
             .trim();
 
           const isIngredientDuplicates = arrayWithoutDuplicates.find(
-<<<<<<< HEAD
-            (ingredientInArray) => ingredientInArray == lowerAndTrimIngredient,
-=======
             (ingredientInArray) => ingredientInArray == lowerAndTrimIngredient
->>>>>>> Scénario-alternatif-A1
           );
 
           if (!isIngredientDuplicates) {
@@ -534,11 +341,7 @@ const ulTagDOM = (tagName, recipeArray, searchValue) => {
         const lowerAndTrimAppliance = appliance.toLowerCase().trim();
 
         const isApplianceDuplicates = arrayWithoutDuplicates.find(
-<<<<<<< HEAD
-          (applianceInArray) => applianceInArray == lowerAndTrimAppliance,
-=======
           (applianceInArray) => applianceInArray == lowerAndTrimAppliance
->>>>>>> Scénario-alternatif-A1
         );
 
         if (!isApplianceDuplicates) {
@@ -550,19 +353,11 @@ const ulTagDOM = (tagName, recipeArray, searchValue) => {
       else if (tagName == "ustensils") {
         const { ustensils } = recipe;
 
-<<<<<<< HEAD
-        ustensils.map((ustensil) => {
-          const lowerAndTrimUstensil = ustensil.toLowerCase().trim();
-
-          const isUstensilDuplicates = arrayWithoutDuplicates.find(
-            (ustensilInArray) => ustensilInArray == lowerAndTrimUstensil,
-=======
         for (const ustensil of ustensils) {
           const lowerAndTrimUstensil = ustensil.toLowerCase().trim();
 
           const isUstensilDuplicates = arrayWithoutDuplicates.find(
             (ustensilInArray) => ustensilInArray == lowerAndTrimUstensil
->>>>>>> Scénario-alternatif-A1
           );
 
           if (!isUstensilDuplicates) {
@@ -574,11 +369,7 @@ const ulTagDOM = (tagName, recipeArray, searchValue) => {
   }
 
   const arrayWithoutDuplicatesOrderByAsc = arrayWithoutDuplicates.sort((a, b) =>
-<<<<<<< HEAD
-    a.localeCompare(b),
-=======
     a.localeCompare(b)
->>>>>>> Scénario-alternatif-A1
   );
 
   generateTagLi(tagName, arrayWithoutDuplicatesOrderByAsc);
@@ -625,8 +416,4 @@ tagDOM("ingredients", recipes);
 tagDOM("appliance", recipes);
 tagDOM("ustensils", recipes);
 
-<<<<<<< HEAD
-recipesFilter();
-=======
 recipesFilter({ isStart: true });
->>>>>>> Scénario-alternatif-A1
