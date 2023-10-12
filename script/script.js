@@ -206,7 +206,7 @@ const actifTag = (tagName, textContent) => {
   blockActifP.textContent = textContent.toLowerCase();
 
   actif.classList.remove("hidden");
-  blockActif.classList.remove("hidden");
+  blockActif.classList.add("hiddenActif");
 
   blockActifI.addEventListener("click", () => {
     closeActifButton(tagName);
@@ -233,6 +233,7 @@ const closeActifButton = (tagName) => {
 
   actif.classList.add("hidden");
   blockActif.classList.add("hidden");
+  blockActif.classList.remove("hiddenActif");
 
   recipesFilter({ isStart: false });
 };
@@ -383,6 +384,7 @@ const tagDOM = (tagName, recipesArray) => {
   const inputSearch = document.querySelector(`.${tagName} input[type=search]`);
 
   const blockSelect = document.querySelector(`.${tagName} .blockSelect`);
+  const blockActif = document.querySelector(`.${tagName} .block-actif`);
 
   let isIconUp = true;
 
@@ -391,6 +393,14 @@ const tagDOM = (tagName, recipesArray) => {
   actifI.addEventListener("click", () => closeActifButton(tagName));
 
   buttonTag.addEventListener("click", () => {
+    if (blockActif.classList.contains("hiddenActif") && isIconUp) {
+      blockActif.classList.add("hidden");
+    }
+
+    if (blockActif.classList.contains("hiddenActif") && !isIconUp) {
+      blockActif.classList.remove("hidden");
+    }
+
     if (isIconUp) {
       iconTag.classList.remove("fa-arrow-up");
       iconTag.classList.add("fa-arrow-down");

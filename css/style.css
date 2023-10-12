@@ -164,6 +164,7 @@ input[type="search"] {
   width: 195px;
   background: #ffffff;
   border-radius: 11px;
+  padding-bottom: 20px;
 }
 
 .blockSelect input[type="search"] {
@@ -203,6 +204,8 @@ input[type="search"] {
 
 .blockSelect ul {
   padding-bottom: 10px;
+  height: 150px;
+  overflow-y: scroll;
 }
 
 .blockSelect li {
